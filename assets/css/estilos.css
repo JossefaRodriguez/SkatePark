@@ -5,9 +5,8 @@ body {
     font-family: sans-serif;
     text-align: center;
     padding: 40px 100px;
-    
   }
-  
+
   h1{
       font-style: italic;
   }
@@ -19,19 +18,6 @@ body {
       width: 60px;
       height: 60px;
   }
-  
-  tbody tr:nth-child(1) td div{
-          background-image: url("/assets/img/tony.jpg");
-  }
-  
-  tbody tr:nth-child(2) td div{
-      background-image: url("/assets/img/Evelien.jpg");
-  }
-  
-  tbody tr:nth-child(3) td div{
-      background-image: url("/assets/img/Danny.jpg");
-  }
-  
   input{
       text-align: center;
   }

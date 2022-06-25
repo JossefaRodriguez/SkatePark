@@ -2,59 +2,85 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
-  <link rel="stylesheet" href="assets/css/estilos.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+    <link rel="stylesheet" href="assets/css/estilos.css" />
 </head>
 
 <body>
-  <h1>Skate Park</h1>
+    <h1>Skate Park</h1>
 
-  <div class="py-4">
-    <h2>Registro</h2>
-    <hr class="w-50" />
+    <div class="py-4">
+        <h2>Registro</h2>
+        <hr class="w-50" />
 
-    <form method="post" action="/registrar" enctype="multipart/form-data">
-      <div class="form-group row w-50 m-auto">
-        <div class="form-group col-12 col-sm-6">
-          <label>Email</label>
-          <input class="form-control m-auto" id="email" name="email" />
-        </div>
-        <div class="form-group col-12 col-sm-6">
-          <label>Nombre</label>
-          <input class="form-control m-auto" id="nombre" name="nombre" />
-        </div>
-        <div class="form-group col-12 col-sm-6">
-          <label>Password</label>
-          <input class="form-control m-auto" id="password" name="password" />
-        </div>
-        <div class="form-group col-12 col-sm-6">
-          <label>Repita la password</label>
-          <input class="form-control m-auto" id="repPass"/>
-        </div>
-        <div class="form-group col-12 col-sm-6">
-          <label>Años de experiencia</label>
-          <input class="form-control m-auto" id="aniosExp" name="anios_experiencia"/>
-        </div>
-        <div class="form-group col-12 col-sm-6">
-          <label>Especialidad</label>
-          <input class="form-control m-auto" id="especialidad" name="especialidad" />
-        </div>
-        <div class="form-group col-12 col-sm-12">
-          <label>Foto de perfil</label>
-          <input type="file" id="foto" name="foto" />
-        </div>
-      </div>
-      <input type="submit" class="btn btn-info mb-3">Registrarme</input>
-      <p><a href="/login"> Iniciar sesión</a></p>
-    </form>
-  </div>
-  
- 
+        <form id="formRegistro" method="post" action="/registro" enctype="multipart/form-data">
+            <div class="form-group row w-50 m-auto">
+                <div class="form-group col-12 col-sm-6">
+                    <label>Email</label>
+                    <input id="email" name="email" class="form-control m-auto" />
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <label>Nombre</label>
+                    <input id="nombre" name="nombre" class="form-control m-auto" />
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <label>Password</label>
+                    <input type="password" id="password" name="password" class="form-control m-auto" />
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <label>Repita la password</label>
+                    <input type="password" class="form-control m-auto" id="password2" name="password2" />
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <label>Años de experiencia</label>
+                    <input id="anis_experiencia" name="anios_experiencia" class="form-control m-auto" />
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <label>Especialidad</label>
+                    <input id="especialidad" name="especialidad" class="form-control m-auto" />
+                </div>
+                <div class="form-group col-12 col-sm-12">
+                    <label>Foto de perfil</label>
+                    <input id="foto" name="foto" type="file" />
+                </div>
+            </div>
+            <input type="submit" class="btn btn-info mb-3" value="Registrarme"></input>
+            <p><a href="/login"> Iniciar sesión</a></p>
+        </form>
+    </div>
+    <script>
+        const alertas = () => {
+            if ('{{message}}') {
+                alert('{{message}}')
+            }
+            const formRegistro = document.querySelector('#formRegistro')
+            // Se agrega evento submit al formulario para validar contraseñas antes de enviar el formulario
+            formRegistro.addEventListener('submit', async (event) => {
+                // se obienen inputs password y confirnacion de password
+                const password = document.querySelector('#password')
+                const password2 = document.querySelector('#password2')
+                // si el password esta vacio
+                if (password.value === '') {
+                    alert('Ingrese una contraseña')
+                    //cancela el evento
+                    event.preventDefault()
+                }
+                // si password y confirmacion password no coinciden
+                else if (password.value != password2.value) {
+                    alert('Las contraseñas no coinciden')
+                    //cancela el evento
+                    event.preventDefault()
+                }
+
+            })
+        }
+        alertas()
+    </script>
 </body>
 
 </html>
